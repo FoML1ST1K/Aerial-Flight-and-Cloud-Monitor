@@ -60,7 +60,7 @@ namespace Diplo
             double photoLatitude = 55.9726; // Широта фото
             double photoLongitude = 37.4148; // Долгота фото
             PointLatLng photoLocation = new PointLatLng(photoLatitude, photoLongitude);
-            originalPlaneBitmap = new Bitmap(@"C:\Users\listi\Desktop\Папка\Университет\Диплом\Diplo\Diplo\plane.png");
+            originalPlaneBitmap = new Bitmap(@"C:\Users\listi\Desktop\Папка\Университет\Диплом\Diplom\plane.png");
             planeMarker = new GMarkerGoogle(photoLocation, originalPlaneBitmap);
             AddCloudOnPlanePath(planeMarker.Position, targetPoint);
 
@@ -284,10 +284,10 @@ namespace Diplo
             {
                 // Движение к целевой точкес поворотом
                 //double angleOffset = 30; // Угол отклонения для обхода облака вправо
-                double angleOffset = -30; // Угол отклонения для обхода облака влево
+                double angleOffset = 30; // Угол отклонения для обхода облака влево
                 double avoidanceBearing = (currentBearing + angleOffset) % 360;
 
-                currentBearing = InterpolateAngle(currentBearing, avoidanceBearing, 0.2); // Плавное изменение угла
+                currentBearing = InterpolateAngle(currentBearing, avoidanceBearing, 0.1); // Плавное изменение угла
                 newPosition = GetPointAtBearingAndDistance(planeMarker.Position, currentBearing, speed * 150);
 
                 // Плавное возвращение к целевой точке после первого поворота
@@ -364,7 +364,7 @@ namespace Diplo
             point_counter += 1;
             if (point_counter == 20)
             {
-                Bitmap ponit = new Bitmap(@"C:\Users\listi\Desktop\Папка\Университет\Диплом\Diplo\Diplo\tochka.png");
+                Bitmap ponit = new Bitmap(@"C:\Users\listi\Desktop\Папка\Университет\Диплом\Diplom\tochka.png");
                 GMarkerGoogle pointMarker = new GMarkerGoogle(new PointLatLng(newLatitude - 0.04, newLongitude), ponit);
                 flightpointMarkers.Add(pointMarker);
                 gmap.Overlays.Add(flightpointOverlay);
@@ -406,8 +406,10 @@ namespace Diplo
 
             // Рассчитываем координаты облака вдоль маршрута самолета
             double cloudDistanceFromPlane = 400; // Расстояние от самолета до облака (в градусах)
-            PointLatLng cloudCenter = GetPointAtBearingAndDistance(planePosition, bearing + 3, cloudDistanceFromPlane);
-            PointLatLng cloudCenter1 = GetPointAtBearingAndDistance(planePosition, bearing + 7, cloudDistanceFromPlane - 200);
+            //PointLatLng cloudCenter = GetPointAtBearingAndDistance(planePosition, bearing + 3, cloudDistanceFromPlane);
+            //PointLatLng cloudCenter1 = GetPointAtBearingAndDistance(planePosition, bearing + 7, cloudDistanceFromPlane - 200);
+            PointLatLng cloudCenter = GetPointAtBearingAndDistance(planePosition, bearing, cloudDistanceFromPlane);
+            PointLatLng cloudCenter1 = GetPointAtBearingAndDistance(planePosition, bearing, cloudDistanceFromPlane - 200);
 
             // Добавляем координаты центра облака в список
             cloudCenters.Add(cloudCenter);
