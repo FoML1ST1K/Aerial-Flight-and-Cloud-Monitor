@@ -1,4 +1,4 @@
-# Flight Path Visualization and Cloud Interaction Simulator
+# Aerial Flight and Cloud Monitor
 This project is a Windows Forms application in C# that visualizes the simulated path of an airplane on a GMap.NET map. The application also generates cloud points on the map, allowing real-time interaction by displaying their positions relative to the airplane. Additional elements include dynamic charts and overlays to monitor various parameters like cloud distance and relative bearing.
 
 ## Features
